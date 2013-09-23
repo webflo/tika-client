@@ -1,0 +1,9 @@
+Apache Tika Client Test
+
+This is a document created to test PHP client do Apache Tika!
+
+
+
+
+
+

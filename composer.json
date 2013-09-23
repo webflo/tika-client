@@ -1,0 +1,23 @@
+{
+    "name": "marcelomx/tika-client",
+    "description": "Apache Tika PHP Client",  
+    "authors": [
+        {
+            "name": "Marcelo Rodrigues",
+            "email": "marcelo.mx@gmail.com"
+        }
+    ],
+    "license": "GPL",    
+    "require": {
+        "php": ">= 5.3.3",      
+        "symfony/process": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7"
+    },  
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }       
+}
