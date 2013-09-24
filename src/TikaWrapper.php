@@ -109,4 +109,29 @@ class TikaWrapper
     {
         return $this->getClient()->getLanguage($this->resource);
     }    
+
+    /**
+     * Extract current resource to path. 
+     *
+     * @param string $path
+     * @param bool   $extract
+     *
+     * @return string
+     */
+    public function extractTo($path, $attachments = false)
+    {
+        $dir = dirname($path);
+
+        if (!is_writable($dir)) {
+            throw new \InvalidArgumentException(sprintf('The path %s is not writable', $dir));
+        }
+        $content = $attachments ? $this->getHtml() : $this->getText();
+        file_put_contents($path, $content);   
+
+        if ($attachments) {
+            $this->getClient()->extract($this->resource, $dir);
+        }
+
+        return $path;
+    }
 }

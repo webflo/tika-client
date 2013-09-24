@@ -43,4 +43,28 @@ class TikaWrapperTest extends \PHPUnit_Framework_TestCase
         $type = $doc->getContentType();
         $this->assertEquals('application/msword', $type);
     }
+
+    public function testExtractTo()
+    {
+        $doc = new TikaWrapper($this->resource, $this->client);
+        $dir = sys_get_temp_dir() . '/' . md5(time()) . '_tikaxtract';
+        $file = $dir . '/' . time() . '.html';
+        mkdir($dir);
+        $doc->extractTo($file, true);
+
+        $this->assertFileExists($file);
+        $this->assertFileExists($dir . '/image1.png');        
+    }
+
+    public function testExtractToTxt()
+    {
+        $doc = new TikaWrapper($this->resource, $this->client);
+        $dir = sys_get_temp_dir() . '/' . md5(time()) . '_tikaxtract';
+        $file = $dir . '/' . time() . '.txt';
+        mkdir($dir);
+        $doc->extractTo($file, false);
+
+        $this->assertFileExists($file);
+        $this->assertFileNotExists($dir . '/image1.png');        
+    }    
 }
