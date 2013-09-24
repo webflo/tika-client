@@ -8,6 +8,8 @@
         }
     ],
     "license": "GPL",    
+    "type": "library",    
+    "minimum-stability": "dev",    
     "require": {
         "php": ">= 5.3.3",      
         "symfony/process": "dev-master"
