@@ -125,12 +125,15 @@ class TikaWrapper
         if (!is_writable($dir)) {
             throw new \InvalidArgumentException(sprintf('The path %s is not writable', $dir));
         }
-        $content = $attachments ? $this->getHtml() : $this->getText();
-        file_put_contents($path, $content);   
-
         if ($attachments) {
             $this->getClient()->extract($this->resource, $dir);
+            $content = $this->getHtml();
+            // fix embedded images on html
+            $content = preg_replace('/src="embedded:(.*)"/', 'src="$1"', $content);
+        } else {
+            $content = $this->getText();
         }
+        file_put_contents($path, $content);   
 
         return $path;
     }
