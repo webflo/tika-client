@@ -67,4 +67,12 @@ class TikaWrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertFileExists($file);
         $this->assertFileNotExists($dir . '/image1.png');        
     }    
+
+    public function testFixEmbedded()
+    {
+        $doc = new TikaWrapper($this->resource, $this->client);        
+        $html = '<img src="embedded:image1.png">';
+        $fixed = $doc->fixEmbedded($html);
+        $this->assertEquals('<img src="image1.png">', $fixed);
+    }
 }

@@ -127,14 +127,22 @@ class TikaWrapper
         }
         if ($attachments) {
             $this->getClient()->extract($this->resource, $dir);
-            $content = $this->getHtml();
-            // fix embedded images on html
-            $content = preg_replace('/src="embedded:(.*)"/', 'src="$1"', $content);
+            $content = $this->fixEmbedded($this->getHtml());
         } else {
             $content = $this->getText();
         }
         file_put_contents($path, $content);   
 
         return $path;
+    }
+
+    /**
+     * @param string
+     * @return string
+     */
+    public function fixEmbedded($content)
+    {
+        $content = preg_replace('/src="embedded:(.*)"/', 'src="$1"', $content);
+        return $content;
     }
 }
