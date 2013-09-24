@@ -13,6 +13,7 @@ class TikaClient
     const OUTPUT_LANGUAGE      = 'language';
     const OUTPUT_EXTRACT       = 'extract';
     const OUTPUT_EXTRACT_DIR   = 'extract-dir';
+    const OUTPUT_PRETTY_PRINT  = 'pretty-print';
 
     /**
      * Tika jar file or url to server
@@ -63,7 +64,7 @@ class TikaClient
      */
     public function getXhtml($resource)
     {
-        $xhtml = $this->execute($resource, static::OUTPUT_FORMAT_XHTML);
+        $xhtml = $this->execute($resource, array(static::OUTPUT_FORMAT_XHTML, static::OUTPUT_PRETTY_PRINT));
 
         return $xhtml;
     }
@@ -74,7 +75,7 @@ class TikaClient
      */
     public function getHtml($resource)
     {
-        $html = $this->execute($resource, static::OUTPUT_FORMAT_HTML);
+        $html = $this->execute($resource, array(static::OUTPUT_FORMAT_HTML, static::OUTPUT_PRETTY_PRINT));
 
         return $html;
     }
