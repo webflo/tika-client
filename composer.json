@@ -1,25 +1,25 @@
 {
     "name": "marcelomx/tika-client",
-    "description": "Apache Tika PHP Client",  
+    "description": "Apache Tika PHP Client",
     "authors": [
         {
             "name": "Marcelo Rodrigues",
             "email": "marcelo.mx@gmail.com"
         }
     ],
-    "license": "GPL",    
-    "type": "library",    
-    "minimum-stability": "dev",    
+    "license": "GPL",
+    "type": "library",
+    "minimum-stability": "dev",
     "require": {
-        "php": ">= 5.3.3",      
-        "symfony/process": "2.4.*"
+        "php": ">= 5.3.3",
+        "symfony/process": "~2.6"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7"
-    },  
+    },
     "autoload": {
         "psr-0": {
             "": "src/"
         }
-    }       
+    }
 }
